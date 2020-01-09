@@ -52,6 +52,10 @@ class AuthController{
 
     register(req, res){
         var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+        var image = "man.png"
+        if(req.body.gender == "Female"){
+                image  = "female.png";
+        }
         
         user.create({
             firstname : req.body.fname,
@@ -60,7 +64,8 @@ class AuthController{
             gender: req.body.gender,
             phonenumber: req.body.phone,
             email : req.body.email,
-            password : hashedPassword
+            password : hashedPassword,
+            image : image,
         },
         
         function(err, user){
